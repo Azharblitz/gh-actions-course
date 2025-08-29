@@ -1,1 +1,1 @@
-GitHub Actions Repo
+GitHub Actions

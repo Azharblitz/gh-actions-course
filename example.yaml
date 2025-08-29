@@ -1,0 +1,8 @@
+name: 'Its written like "this"'
+config:
+  path: root
+  entries:
+    - name: 'Entry 1'
+      value: 10
+    - name: 'Entry 2'
+      value: 20

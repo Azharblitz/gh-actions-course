@@ -7,4 +7,4 @@ jobs:
       - name: Echo on Ubuntu
         run: |
             echo "This is running on Ubuntu"
-            echo "Runner OS: #RUNNER_OS"
+            echo "Runner OS: $RUNNER_OS"

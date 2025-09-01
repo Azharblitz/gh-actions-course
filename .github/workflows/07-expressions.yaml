@@ -1,0 +1,27 @@
+name: 07-expressions
+run-name: 07 - using expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF' }}
+on:
+    push:
+    workflow_dispatch:
+        inputs:
+            debug:
+                description: 'Enable debug mode'
+                required: false
+                type: boolean
+                default: false
+jobs:
+    echo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: '[DEBUG] Print start-up data'
+              run: echo "This workflow was triggered by a ${{ github.event_name }} event."
+            - name: Debug mode status
+              run: echo "Debug mode is ${{ inputs.debug && 'ON' || 'OFF' }}"
+            - name: Conditional step - debug mode ON
+              if: ${{ inputs.debug }}
+              run: echo "Debug mode is enabled. Performing additional debug tasks..."
+            - name: Conditional step - debug mode OFF
+              if: inputs.debug && github.ref == 'refs/heads/main'
+              run: echo "I was triggered from main."
+            - name: 'Greeting'
+              run: echo "Hello, ${{ github.actor }}! Welcome to the GitHub Actions course."

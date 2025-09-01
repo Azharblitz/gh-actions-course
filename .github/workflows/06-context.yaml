@@ -58,5 +58,5 @@ jobs:
             - name: Print environment variables -3
               run: |
                     echo "The value of MY_WORKFLOW_VAR is: $MY_WORKFLOW_VAR "
-                    echo "The value of MY_OVERWRITTEN_VAR is: MY_OVERWRITTEN_VAR"
+                    echo "The value of MY_OVERWRITTEN_VAR is: $MY_OVERWRITTEN_VAR"
 

@@ -20,7 +20,7 @@ jobs:
             - name: Conditional step - debug mode ON
               if: ${{ inputs.debug }}
               run: echo "Debug mode is enabled. Performing additional debug tasks..."
-            - name: Conditional step - debug mode OFF
+            - name: Conditional step
               if: inputs.debug && github.ref == 'refs/heads/main'
               run: echo "I was triggered from main."
             - name: 'Greeting'

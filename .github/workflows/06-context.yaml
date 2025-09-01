@@ -52,3 +52,11 @@ jobs:
                  echo "The value of MY_WORKFLOW_VAR is: ${{ env.MY_WORKFLOW_VAR }}"
                  echo "The value of MY_OVERWRITTEN_VAR is: ${{ env.MY_OVERWRITTEN_VAR }}"
 
+    echo-data2:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print environment variables -3
+              run: |
+                    echo "The value of MY_WORKFLOW_VAR is: $MY_WORKFLOW_VAR "
+                    echo "The value of MY_OVERWRITTEN_VAR is: MY_OVERWRITTEN_VAR"
+

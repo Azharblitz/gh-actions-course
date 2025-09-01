@@ -8,9 +8,16 @@ on:
                 description: 'Enable debug mode'
                 type: boolean
                 default: false
+env:
+    MY_WORKFLOW_VAR: 'Workflow'
+    MY_OVERWRITTEN_VAR: 'workflow'
+
 jobs:
     echo-data:
         runs-on: ubuntu-latest
+        env:
+            MY_JOB_VAR: 'Job'
+            MY_OVERWRITTEN_VAR: 'job'
         steps:
             - name: Show GitHub Context
               run: |
@@ -32,5 +39,16 @@ jobs:
             - name: Retrieve Variable
               run: |
                 echo "The value of MY_VAR is:. ${{ vars.MY_VAR }}"
- 
-     
+            - name: Print env variables -1
+              env:
+                MY_STEP_VAR: 'Step'
+                MY_OVERWRITTEN_VAR: 'step'
+              run: |
+                echo "The value of MY_WORKFLOW_VAR is: ${{ env.MY_WORKFLOW_VAR }}"
+                echo "The value of MY_OVERWRITTEN_VAR is: ${{ env.MY_OVERWRITTEN_VAR }}"
+
+            - name: Print env variables -2
+              run: |
+                 echo "The value of MY_WORKFLOW_VAR is: ${{ env.MY_WORKFLOW_VAR }}"
+                 echo "The value of MY_OVERWRITTEN_VAR is: ${{ env.MY_OVERWRITTEN_VAR }}"
+

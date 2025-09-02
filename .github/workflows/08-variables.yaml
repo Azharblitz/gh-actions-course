@@ -1,11 +1,12 @@
 name: 08-using-variables
 
 on:
-    # push:
+    push:
     workflow_dispatch:
 env:
     WORKFLOW_VAR: 'Iam Workflow variable'
     OVERWRITTEN: 'I am Workflow variable to be overwritten'
+    UNDEFINED_VAR: ${{ vars.UNDEFINED_VAR || 'default'}}  # This variable does not exist
 jobs:
     echo:
         runs-on: ubuntu-latest
@@ -28,3 +29,23 @@ jobs:
               OVERWRITTEN: 'I am step variable'
           run: |
               echo "Workflow En Var: ${{ env.OVERWRITTEN }}" 
+        
+    echo-2:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Print Env variables - ORDER TEST
+          run: |
+              echo "Org Var: ${{ vars.ORG_VAR || env.UNDEFINED_VAR}}"
+              echo "Org Overwritten Var 1: ${{ vars.OVERWRITTEN_VAR }}"
+              echo "Repo Var: ${{ vars.REPOSITORY_VAR }}"
+    
+    echo-prod:
+        runs-on: ubuntu-latest
+        environment: prod
+        steps:
+        - name: Print Env variables - PROD
+          run: |
+              echo "Org Var: ${{ vars.ORG_VAR || env.UNDEFINED_VAR}}"
+              echo "Prod Overwritten Var : ${{ vars.OVERWRITTEN_VAR }}"
+              echo "Repo Var: ${{ vars.REPOSITORY_VAR }}"
+              echo "Prod Environment Var : ${{ vars.TARGET_VAR }}"

@@ -20,13 +20,13 @@ jobs:
               run: |
                 echo "This PR is related to a bug."
 
-            - name: Sleep for 20 seconds
-              run: sleep 20
+            # - name: Sleep for 20 seconds
+            #   run: sleep 20
             
-            - name: Failing Step
-              run: |
-                echo "This step will fail"
-                exit 1
+            # - name: Failing Step
+            #   run: |
+            #     echo "This step will fail"
+            #     exit 1
             - name: This step will be skipped
               if: ${{ success() }}
               run: echo "I will pring if the previous step succeed"

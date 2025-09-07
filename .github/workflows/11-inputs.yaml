@@ -1,0 +1,35 @@
+name: 11 - working with inputs
+on:
+ workflow_dispatch:
+    inputs:
+        dry-run:
+            description: 'Perform a dry run, skip deployment and only print build'
+            required: false
+            type: boolean
+            default: false
+        target:
+            type: environment
+            required: true
+            description: 'Select the target environment'
+        tag: 
+            type: choice
+            options: 
+                - 'v1'
+                - 'v2'
+                - 'v3'
+            default: 'v3'
+            description: 'Release from which to build and deploy'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: echo "Building the project for tag ${{ inputs.tag }}"
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ !inputs.dry-run }}
+    environment: ${{ inputs.target }}
+    steps:
+      - name: Deploy
+        run: echo "Deploying the project to the ${{ inputs.target }} environment"

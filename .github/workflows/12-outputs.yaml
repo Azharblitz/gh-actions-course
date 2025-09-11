@@ -1,4 +1,4 @@
-name: working with outputs
+name: 12-working with outputs
 on:
   workflow_dispatch:
     inputs:
@@ -26,4 +26,4 @@ jobs:
       if: ${{ needs.build.outputs.build-status == 'success' }}
       steps:
         - name: Deploy
-          run: echo "Deploying the project"
+          run: echo "Deploying the project."
